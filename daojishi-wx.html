@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>在线报名 与熊本部长共进下午茶！</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="countdown/jquery.countdown.css" type="text/css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/tickets.css" type="text/css" />
+    <style type="text/css">
+    body {
+        background-image: url(pic/bg.png);
+    }
+    
+    #ticket-btn {
+        font: bold 12px/20px arial, sans-serif;
+        font-size: medium;
+    }
+    
+    #content-daojishi div {
+        text-align: center;
+    }
+    
+    #content-daojishi {
+        border: 2px solid white;
+        border-radius: 5px;
+    }
+    
+    .content-daojishi {
+        margin: auto;
+        font-size: 0.8em;
+        font-weight: bold;
+    }
+    
+    .content-daojishi .col-xs-12 {
+        padding: 3px 10px;
+        color: #888;
+    }
+    
+    .content-daojishi hr {
+        background: white;
+        height: 2px;
+    }
+    
+    #content-countdown {
+        margin-top: 5px;
+        padding: 10px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="xb-title-picture" class="row" style="">
+            <img src="pic/xb_title.jpg" />
+        </div>
+        <div id="daojishi">
+            <div class="row content-daojishi">
+                <div id="content-daojishi" class="col-xs-12">
+                    <div class="row">
+                        <div class="col-xs-11" style="text-align: right">
+                            <img src="http://cdn-app.ipaitrip.com/tickets/pic/icon_location.png" style="width: 12px;height: 16px;text-align: center"> <span>上海市</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12" style="padding: 5px">活动时间:第一场4月16日/第二场:4月17日</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">每人每台手机限购一张, 请下载APP参与抢票</div>
+                    </div>
+                    <hr/>
+                    <div class="row">
+                        <div class="col-xs-12">抢票一 4月6日 20:00（可预订4月16日、4月17日活动限量入场券）</div>
+                        <div class="col-xs-12">抢票二 4月8日 20:00（可预订4月16日、4月17日活动限量入场券）</div>
+                        <div class="col-xs-12">票价：238元/位（含入场券、活动礼包及下午茶）</div>
+                    </div>
+                </div>
+            </div>
+            <div id="content-countdown" class="row">
+                <div class="col-xs-12" style="text-align: center">
+                    <span style="text-align: center;font-size: 18px;">抢票倒计时</span>
+                    <div id="countdown" style="margin-top: 5px"></div>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+
+        <div id="footer" class="navbar-fixed-bottom">
+            <div id="footer-buy" class="footer" style="">
+                <div class="col-xs-12" style="text-align:center; background-color:#fff !important;">
+                    <div class="col-xs-6">
+                        <a id="buyBtn" type="button" class="btn btn-sm" style="color: #d7bf7f ;border: 1px solid #d7bf7f; border-radius:10px; padding:5px 30px; font-size:15px;" href="http://ipaitrip.com/app/trip-share.html?id=56faa59b9e775d78c8ae76c4&user_id=56f908a4ecc91a5d9eb02bb9&from=groupmessage&isappinstalled=1">活动详情</a>
+                    </div>
+                    <div class="col-xs-6"><a id="buyBtn" type="button" class="btn btn-sm" style="color: #d7bf7f ;border: 1px solid #d7bf7f; border-radius:10px; padding:5px 20px; font-size:15px;" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.ipaitrip.pai">下载圆周派APP</a></div>
+                </div>
+            </div>
+        </div>        
+    </div>
+    <script src="js/jquery-2.2.2.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="countdown/jquery.countdown.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="s/tickets.js"></script>
+    <script type="application/javascript">
+    $(function() {
+        // 获取上个页面传过来的数据
+        // var accessToken = JSON.parse(getUrlParam("sources")).tickets;
+        var ts = new Date(2016, 6, 1, 20, 0,0);
+        $('#countdown').countdown({
+            timestamp: ts,
+            callback: function(days, hours, minutes, seconds) {
+                if (days == 0 && hours == 0 && minutes == 0 && seconds == 0) {
+                    //window.location.href = "index.html";
+                    alert("时间已到，赶快上APP抢票吧!");
+                }
+//                console.log("days" + days + " h:" + hours + " m:" + minutes + " s:" + seconds);
+            }
+        });
+    });
+    </script>
+</body>
+
+</html>

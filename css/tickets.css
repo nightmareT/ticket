@@ -1,0 +1,106 @@
+#xb-title-picture {
+    /*background-image: url(pic/xb_title.jpg);*/
+    /*background-repeat:no-repeat;*/
+    background-size: contain;
+    margin-bottom: 20px;
+}
+
+#xb-title-picture img {
+    height: auto;
+    width: 100%;
+}
+
+#ticket-info {
+    padding: 5px 15px 60px 15px;
+}
+
+#ticket-detail {
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 5px 15px;
+    color: #888;
+    margin-bottom: 15px;
+    box-shadow: 0 0 8px #ccc;
+}
+
+#ticket-detail hr {
+    border: 0.5px solid white;
+
+}
+
+#ticket-detail .col-xs-12 {
+    margin-bottom: 15px;
+}
+#ticket-detail .col-xs-12:first-child{
+    padding: 10px 0px;
+    font-size: 20px;
+    border-bottom: 1px solid #ccc;
+}
+#ticket-detail .col-xs-12:first-child #price1 {
+    color: #d7bf7f;
+}
+#ticket-detail .col-xs-12:last-child {
+    margin-bottom: 5px;
+}
+#ticket-detail .col-xs-12.select-tickets-btns {
+    padding: 0px !important;
+}
+#ticket-detail .col-xs-12.select-tickets-btns .col-xs-6 {
+    padding: 0px;
+}
+.btn-warning {
+    background-color: #d7bf7f !important;
+    border-color: #d7bf7f !important;
+}
+.disable {
+    background-color: #ccc !important;
+    border-color: #ccc !important;
+}
+#ticket-detail .col-xs-12.select-tickets-btns .col-xs-6:last-child {
+    float: right;
+    text-align: right;
+}
+#ticket-detail .col-xs-12.select-tickets-btns .col-xs-6 a {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    box-shadow: 0 0 8px #ccc;
+}
+#ticket-detail .col-xs-12.select-tickets-btns .col-xs-6 a:hover {
+    /*background: none;*/
+}
+
+.yellow-font {
+    color: #ffc71b
+}
+
+/*.select-tickets-btns {
+    text-align: justify
+}*/
+
+/*介绍*/
+.desc {
+    color: #959595;
+    font-size: 13px;
+}
+.desc aside {
+    margin-bottom: 15px;
+}
+.desc aside h4 {
+    font-size: 15px;
+}
+.desc aside p {
+    margin-bottom: 5px;
+}
+.footer .col-xs-12{
+    background-color: #d7bf7f;
+    height: 45px;
+    line-height: 45px;
+}
+.footer .col-xs-12 .col-xs-6 {
+    color: #fff;
+}
+.footer .col-xs-12 .col-xs-6:last-child {
+    text-align: right;
+    float: right;
+}

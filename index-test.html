@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="pragma" content="no-cache">  
+    <meta http-equiv="cache-control" content="no-cache">  
+    <meta http-equiv="expires" content="0">     
+    <title>首页</title>
+    <link rel="stylesheet" href="http:http://cdn-app.ipaitrip.com/tickets/css/bootstrap.min.css" type="text/css" />
+    <script src="http://cdn-app.ipaitrip.com/tickets/js/jquery-2.2.2.js"></script>
+    <script src="http://cdn-app.ipaitrip.com/tickets/js/bootstrap.js"></script>
+    <style type="text/css">
+    body {
+        background-image: url(pic/bg.png);
+    }
+    
+    #ticket-btn {
+        font: bold 12px/20px arial, sans-serif;
+        font-size: medium;
+    }
+    
+    #daojishi {
+        display: none;
+    }
+    
+    #content-daojishi div {
+        text-align: center;
+    }
+    
+    #xb-title-picture {
+        background-image: url(pic/xb_title.jpg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        margin-bottom: 20px;
+    }
+    
+    #xb-title-picture img {
+        height: auto;
+        width: 100%;
+    }
+    
+    #content-daojishi {
+        border: 2px solid white;
+        border-radius: 5px;
+    }
+    
+    .content-daojishi {
+        margin: auto;
+        font-size: 0.8em;
+        font-weight: bold;
+    }
+    
+    .content-daojishi .col-xs-12 {
+        padding: 5px;
+        color: #888;
+    }
+    
+    .content-daojishi hr {
+        background: white;
+        height: 2px;
+    }
+    
+    #content-countdown {
+        margin-top: 5px;
+        padding: 10px;
+    }
+    </style>
+</head>
+
+<body>
+    <script src="http://cdn-app.ipaitrip.com/tickets/js/jquery.cookie.js"></script>
+    <script src="http://cdn-app.ipaitrip.com/tickets/js/tickets.js"></script>
+    <script type="application/javascript">
+    $(function() {
+
+        var accessToken = getUrlParam("token");
+        console.log('accessToken', accessToken);
+        var data;
+        if (accessToken) {
+            saveAccessToken(accessToken);
+        } else {
+            accessToken = getAccessToken();
+        }
+        var ticketId;
+//alert("suibian");
+        $.ajax({
+            type: "GET",
+            url: "https://lbs.ipaitrip.com/api/v1/tickets",
+            beforeSend: function(XMLHttpRequest) {
+                XMLHttpRequest.setRequestHeader("Authorization", accessToken);
+            },
+            success: function(data) {
+                if (data.code == 419) {
+                    alert("请重新登录再重新启动app");
+                    return;
+                }
+                sources = JSON.stringify(data);
+                var tickets = data.tickets;
+                var isStart = true;
+
+                var haveBuyTicketId;
+                var isQuantity = false;
+                var starTime;
+
+
+                for (var i = 0; i < tickets.length; i++) {
+                    var ticket = tickets[i];
+                    var expired_at = ticket.expired_at;
+                    //                    alert((new Date().getTime()/1000)>expired_at);
+                    if (ticket.quantity) {
+                        isQuantity = true;
+
+                    }
+                    if ((new Date().getTime() / 1000) < expired_at) {
+                        //判断活动是否开始
+
+                        isStart = false;
+                        starTime = new Date(expired_at * 1000);
+                        //                        alert(isStart);
+                        break;
+                    }
+
+                    //判断是否已经购买
+                    if (ticket.pay) {
+                        haveBuyTicketId = ticket._id;
+                        break;
+                    }
+                }
+
+                //判断活动是否开始
+                var accessTokenSuffix;
+                if (accessToken) {
+                    accessTokenSuffix = "?token=" + accessToken;
+                } else {
+                    accessTokenSuffix = "";
+                }
+                if (!isStart) {
+
+                    //如果活动没开始   新添加到计时参数
+                    window.location.href = "daojishi-test.html" + accessTokenSuffix + '&sources=' + sources+'&timestamp='+new Date().getTime();
+                    return;
+                }
+
+                // //判断是否已经购买
+                if (haveBuyTicketId) {
+                    //跳转到已经购买成功的页面
+                    window.location.href = "haveBuy.html" + accessTokenSuffix+'&timestamp='+new Date().getTime();
+                    return;
+                }
+                
+                //判断是否已经没有库存
+                if (isQuantity) {
+                    //跳转到抢票页面
+                    window.location.href = "ticketInfo.html" + accessTokenSuffix+'&timestamp='+new Date().getTime();
+                    //                    alert("可以抢票了");
+                } else {
+                    //跳转到没有库存的页面
+                    window.location.href = "noTicket.html" + accessTokenSuffix+'&timestamp='+new Date().getTime();
+                    //                    alert("没有库存");
+                }
+            }
+        });
+    });
+    </script>
+</body>
+
+</html>
