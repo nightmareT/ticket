@@ -109,18 +109,12 @@ $(function() {
         console.log(accessToken);
 
         });
-    var changeAccess=function(){console.log(accessToken)};
-var b=setTimeout("changeAccess()",1000);
+    // var changeAccess=function(){console.log(accessToken)};
+// var b=setTimeout("changeAccess()",1000);
 
 
-    // accessToken = getUrlParam("token");
-    // if (accessToken) {
-    //     saveAccessToken(accessToken);
-    // } else {
-    //     accessToken = getAccessToken();
-    // }
-
-// var c=function(){   
+var c=function(){   
+    console.log(accessToken);
     $.ajax({
         type: "GET",
         url: "https://lbs.ipaitrip.com/api/v1/tickets",
@@ -145,7 +139,18 @@ var b=setTimeout("changeAccess()",1000);
         }
 
     });
-// }
+}
+
+
+var t=setTimeout(c,1000);
+    // accessToken = getUrlParam("token");
+    // if (accessToken) {
+    //     saveAccessToken(accessToken);
+    // } else {
+    //     accessToken = getAccessToken();
+    // }
+
+
 
 });
 
